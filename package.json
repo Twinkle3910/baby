@@ -1,0 +1,21 @@
+{
+  "name": "baby-paper-hybrid",
+  "private": true,
+  "version": "0.1.0",
+  "description": "纸质喂养本 + 家长数字化助手",
+  "workspaces": [
+    "server",
+    "web"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w server & npm run dev -w web",
+    "dev:server": "npm run dev -w server",
+    "dev:web": "npm run dev -w web",
+    "build": "npm run build -w server && npm run build -w web",
+    "start": "npm run start -w server",
+    "db:push": "npm run db:push -w server",
+    "db:seed": "npm run db:seed -w server",
+    "test": "npm run test -w server",
+    "field-trial": "bash scripts/field-trial.sh"
+  }
+}

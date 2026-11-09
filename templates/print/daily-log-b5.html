@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>宝宝每日喂养记录表 · B5</title>
+  <style>
+    @page { size: B5 portrait; margin: 8mm; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: #1a1a1a;
+      font-size: 10px;
+      line-height: 1.25;
+    }
+    .sheet {
+      width: 160mm;
+      min-height: 230mm;
+      margin: 0 auto;
+      padding: 3mm;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 2px solid #222;
+      padding-bottom: 3mm;
+      margin-bottom: 2mm;
+    }
+    .brand {
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .brand small {
+      display: block;
+      font-size: 9px;
+      font-weight: 400;
+      color: #555;
+      margin-top: 1px;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: 34mm 34mm 34mm;
+      gap: 1.5mm;
+      font-size: 11px;
+    }
+    .meta .field {
+      border-bottom: 1px solid #333;
+      min-height: 6mm;
+      padding: 0.5mm 1mm 0;
+    }
+    .meta .label { color: #666; font-size: 9px; }
+    .sleep {
+      margin: 2mm 0;
+      border: 1px solid #333;
+      padding: 1.5mm;
+    }
+    .sleep h3 { margin: 0 0 1.5mm; font-size: 11px; }
+    .sleep-bar {
+      display: grid;
+      grid-template-columns: repeat(24, 1fr);
+      border: 1px solid #333;
+    }
+    .sleep-bar .cell {
+      height: 6.5mm;
+      border-right: 1px solid #999;
+      position: relative;
+    }
+    .sleep-bar .cell:last-child { border-right: none; }
+    .sleep-bar .cell span {
+      position: absolute;
+      bottom: -4mm;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 7px;
+      color: #555;
+    }
+    .hint { margin-top: 4.5mm; font-size: 8px; color: #666; }
+    table.log {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 4.5mm;
+    }
+    table.log th, table.log td {
+      border: 1px solid #333;
+      padding: 1mm 0.5mm;
+      text-align: center;
+      height: 7.2mm;
+    }
+    table.log th {
+      background: #f3f3f3;
+      font-weight: 600;
+      font-size: 9px;
+    }
+    table.log td.note { text-align: left; padding-left: 1.5mm; }
+    .totals {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.5mm;
+      margin-top: 2.5mm;
+      border: 1px solid #333;
+      padding: 1.5mm;
+    }
+    .totals .item {
+      border-bottom: 1px dashed #999;
+      min-height: 7mm;
+      padding: 0.5mm;
+    }
+    .totals .label { font-size: 9px; color: #555; }
+    .footer {
+      margin-top: 2mm;
+      display: flex;
+      justify-content: space-between;
+      font-size: 8px;
+      color: #666;
+    }
+    @media print {
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .no-print { display: none !important; }
+    }
+    .toolbar {
+      position: sticky;
+      top: 0;
+      background: #eef6ff;
+      border-bottom: 1px solid #9bb8d8;
+      padding: 8px 12px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      z-index: 10;
+    }
+    .toolbar button {
+      border: 1px solid #3a5f8a;
+      background: #9ec5ef;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar no-print">
+    <strong>B5 日表（随身本）</strong>
+    <button onclick="window.print()">打印 / 另存 PDF</button>
+    <span>适合对折装订或放妈咪包</span>
+  </div>
+  <div class="sheet">
+    <div class="header">
+      <div class="brand">
+        宝宝每日喂养记录
+        <small>B5 · 随身版</small>
+      </div>
+      <div class="meta">
+        <div class="field"><div class="label">日期</div>____/____/____</div>
+        <div class="field"><div class="label">宝宝</div></div>
+        <div class="field"><div class="label">记录人</div></div>
+      </div>
+    </div>
+
+    <div class="sleep">
+      <h3>睡眠条（涂睡着时段）</h3>
+      <div class="sleep-bar">
+        <div class="cell"><span>0</span></div>
+        <div class="cell"><span>1</span></div>
+        <div class="cell"><span>2</span></div>
+        <div class="cell"><span>3</span></div>
+        <div class="cell"><span>4</span></div>
+        <div class="cell"><span>5</span></div>
+        <div class="cell"><span>6</span></div>
+        <div class="cell"><span>7</span></div>
+        <div class="cell"><span>8</span></div>
+        <div class="cell"><span>9</span></div>
+        <div class="cell"><span>10</span></div>
+        <div class="cell"><span>11</span></div>
+        <div class="cell"><span>12</span></div>
+        <div class="cell"><span>13</span></div>
+        <div class="cell"><span>14</span></div>
+        <div class="cell"><span>15</span></div>
+        <div class="cell"><span>16</span></div>
+        <div class="cell"><span>17</span></div>
+        <div class="cell"><span>18</span></div>
+        <div class="cell"><span>19</span></div>
+        <div class="cell"><span>20</span></div>
+        <div class="cell"><span>21</span></div>
+        <div class="cell"><span>22</span></div>
+        <div class="cell"><span>23</span></div>
+      </div>
+      <div class="hint">涂满即可，不必写「睡觉」二字。</div>
+    </div>
+
+    <table class="log">
+      <thead>
+        <tr>
+          <th style="width:14%">时间</th>
+          <th style="width:10%">左</th>
+          <th style="width:10%">右</th>
+          <th style="width:12%">瓶(ml)</th>
+          <th style="width:8%">尿</th>
+          <th style="width:8%">便</th>
+          <th style="width:38%">备注</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td></td><td></td><td></td><td></td><td>□</td><td>□</td><td class="note"></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td>□</td><td>□</td><td class="note"></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td>□</td><td>□</td><td class="note"></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td>□</td><td>□</td><td class="note"></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td>□</td><td>□</td><td class="note"></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td>□</td><td>□</td><td class="note"></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td>□</td><td>□</td><td class="note"></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td>□</td><td>□</td><td class="note"></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td>□</td><td>□</td><td class="note"></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td>□</td><td>□</td><td class="note"></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td>□</td><td>□</td><td class="note"></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td>□</td><td>□</td><td class="note"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="totals">
+      <div class="item"><div class="label">喂养次数</div></div>
+      <div class="item"><div class="label">奶量(ml)</div></div>
+      <div class="item"><div class="label">尿</div></div>
+      <div class="item"><div class="label">便</div></div>
+      <div class="item"><div class="label">睡眠</div></div>
+    </div>
+
+    <div class="footer">
+      <span>亲喂写分钟 · 瓶喂写 ml · 尿便打勾</span>
+      <span>Baby Paper Hybrid · B5</span>
+    </div>
+  </div>
+</body>
+</html>

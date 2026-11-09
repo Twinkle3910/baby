@@ -1,0 +1,16 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8787:8787"
+    environment:
+      PORT: "8787"
+      DATABASE_URL: "file:/app/data/baby.db"
+      UPLOAD_DIR: "/app/data/uploads"
+      CORS_ORIGIN: "*"
+      OCR_PROVIDER: mock
+      FAMILY_PIN: "1234"
+    volumes:
+      - ./data:/app/data
+      - ./templates:/app/templates:ro
+    restart: unless-stopped
