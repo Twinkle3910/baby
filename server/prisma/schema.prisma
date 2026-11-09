@@ -1,0 +1,96 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Family {
+  id        String   @id @default(cuid())
+  name      String   @default("我家")
+  pin       String   @default("1234")
+  createdAt DateTime @default(now())
+  babies    Baby[]
+  carers    Carer[]
+}
+
+model Baby {
+  id          String      @id @default(cuid())
+  familyId    String
+  family      Family      @relation(fields: [familyId], references: [id], onDelete: Cascade)
+  name        String
+  birthday    DateTime
+  gender      String      @default("unknown")
+  notes       String?
+  createdAt   DateTime    @default(now())
+  records     Record[]
+  media       Media[]
+  paperScans  PaperScan[]
+}
+
+model Carer {
+  id        String   @id @default(cuid())
+  familyId  String
+  family    Family   @relation(fields: [familyId], references: [id], onDelete: Cascade)
+  name      String
+  role      String   @default("parent")
+  createdAt DateTime @default(now())
+  records   Record[]
+  media     Media[]
+}
+
+/// Unified event log: feeding | diaper | sleep | growth | note
+model Record {
+  id          String   @id @default(cuid())
+  babyId      String
+  baby        Baby     @relation(fields: [babyId], references: [id], onDelete: Cascade)
+  carerId     String?
+  carer       Carer?   @relation(fields: [carerId], references: [id], onDelete: SetNull)
+  type        String
+  occurredAt  DateTime
+  endAt       DateTime?
+  /// JSON payload for type-specific fields
+  payload     String   @default("{}")
+  note        String?
+  source      String   @default("manual")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  media       Media[]
+
+  @@index([babyId, occurredAt])
+  @@index([babyId, type])
+}
+
+model Media {
+  id         String   @id @default(cuid())
+  babyId     String
+  baby       Baby     @relation(fields: [babyId], references: [id], onDelete: Cascade)
+  recordId   String?
+  record     Record?  @relation(fields: [recordId], references: [id], onDelete: SetNull)
+  carerId    String?
+  carer      Carer?   @relation(fields: [carerId], references: [id], onDelete: SetNull)
+  filename   String
+  mimeType   String
+  takenAt    DateTime @default(now())
+  caption    String?
+  createdAt  DateTime @default(now())
+
+  @@index([babyId, takenAt])
+}
+
+model PaperScan {
+  id           String   @id @default(cuid())
+  babyId       String
+  baby         Baby     @relation(fields: [babyId], references: [id], onDelete: Cascade)
+  filename     String
+  mimeType     String
+  sheetDate    DateTime?
+  status       String   @default("draft")
+  /// JSON array of draft rows awaiting confirm
+  draftJson    String   @default("[]")
+  rawText      String?
+  createdAt    DateTime @default(now())
+  confirmedAt  DateTime?
+}

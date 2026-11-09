@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>保姆 / 月嫂一页使用说明</title>
+  <style>
+    @page { size: A4 portrait; margin: 14mm; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: #1c1c1c;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .page {
+      max-width: 180mm;
+      margin: 0 auto;
+      padding: 8mm;
+    }
+    h1 {
+      font-size: 22px;
+      margin: 0 0 4px;
+      border-bottom: 3px solid #2c5f4a;
+      padding-bottom: 6px;
+    }
+    .sub {
+      color: #555;
+      margin-bottom: 14px;
+      font-size: 13px;
+    }
+    h2 {
+      font-size: 16px;
+      margin: 16px 0 6px;
+      color: #2c5f4a;
+    }
+    ol, ul { margin: 6px 0; padding-left: 22px; }
+    li { margin: 4px 0; }
+    .card {
+      background: #f4f8f6;
+      border: 1px solid #c5d9cf;
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin: 8px 0;
+    }
+    .example {
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      background: #fff;
+      border: 1px dashed #8aa897;
+      padding: 8px 10px;
+      margin-top: 6px;
+      font-size: 13px;
+    }
+    .do-dont {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .do { border-left: 4px solid #2c5f4a; padding-left: 10px; }
+    .dont { border-left: 4px solid #a34848; padding-left: 10px; }
+    .footer {
+      margin-top: 18px;
+      font-size: 12px;
+      color: #666;
+      border-top: 1px solid #ddd;
+      padding-top: 8px;
+    }
+    @media print { .no-print { display: none !important; } }
+    .toolbar {
+      position: sticky;
+      top: 0;
+      background: #f4f8f6;
+      border-bottom: 1px solid #c5d9cf;
+      padding: 8px 12px;
+      display: flex;
+      gap: 8px;
+      z-index: 10;
+    }
+    .toolbar button {
+      border: 1px solid #2c5f4a;
+      background: #d8ebe2;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar no-print">
+    <strong>保姆使用说明</strong>
+    <button onclick="window.print()">打印一页纸</button>
+  </div>
+  <div class="page">
+    <h1>宝宝记录表 · 怎么填</h1>
+    <div class="sub">给保姆 / 月嫂：不用手机、不用软件，只填这一张纸。家长晚上会拍照存档。</div>
+
+    <h2>一、每天怎么用</h2>
+    <ol>
+      <li>早上先在表格顶部写上<strong>日期、宝宝名、你的名字</strong>。</li>
+      <li>每喂一次奶、换一次尿布，就在下面空行<strong>写一行</strong>。</li>
+      <li>宝宝睡着的时段，在上方<strong>睡眠条</strong>里把对应小时涂满（不必在表格里再写一行「睡觉」）。</li>
+      <li>交接班或晚上收工前，把底部合计空格尽量填上，并在<strong>交接备注</strong>写一句给下一班。</li>
+    </ol>
+
+    <h2>二、每一列写什么</h2>
+    <div class="card">
+      <ul>
+        <li><strong>时间</strong>：几点几分开始（例：06:20）。</li>
+        <li><strong>左 / 右（分）</strong>：亲喂时，左边喂了几分钟、右边几分钟。瓶喂可不填。</li>
+        <li><strong>瓶喂(ml)</strong>：写宝宝<strong>实际喝下</strong>的毫升数（不是瓶里倒了多少）。</li>
+        <li><strong>尿 / 便</strong>：有就打勾 □→☑，没有就空着。</li>
+        <li><strong>备注</strong>：辅食、体温、吐奶、用药、哭闹等，写一两句就行。</li>
+      </ul>
+      <div class="example">
+        例：06:20 | 左 12 | 右 8 | 瓶喂空 | 尿☑ 便□ | 自己醒的<br />
+        例：10:05 | 左空 | 右空 | 瓶喂 90 | 尿□ 便☑ | 配方奶，便便偏稀
+      </div>
+    </div>
+
+    <h2>三、请这样 / 请别这样</h2>
+    <div class="do-dont">
+      <div class="do">
+        <strong>请这样</strong>
+        <ul>
+          <li>当下一件事就写一行，别攒到晚上回忆</li>
+          <li>数字尽量写清楚（6 和 0 要分清）</li>
+          <li>夜里也要记，缺了半夜家长会对不上</li>
+        </ul>
+      </div>
+      <div class="dont">
+        <strong>请别这样</strong>
+        <ul>
+          <li>不必写长篇日记</li>
+          <li>不必猜亲喂「相当于多少 ml」</li>
+          <li>不必使用手机 App</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>四、和家长怎么交接</h2>
+    <ul>
+      <li>纸本放在尿布台或冰箱旁固定位置。</li>
+      <li>交接时口头说一句「上次喂奶几点、下一顿大概什么时候」即可。</li>
+      <li>家长会拍照存进电子记录；你<strong>不用学软件</strong>。</li>
+    </ul>
+
+    <div class="footer">
+      有不清楚的地方直接问家长。这张表只用于日常交接，不代替医生建议。<br />
+      Baby Paper Hybrid · 保姆一页说明
+    </div>
+  </div>
+</body>
+</html>
